@@ -1,0 +1,1 @@
+Production outage! Your REST API is returning 500 Internal Server Error on 100% of our checkout webhook requests for the past 20 minutes, halting all customer orders.

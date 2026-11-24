@@ -1,0 +1,1 @@
+Small bug report: when I enable Dark Mode in the dashboard preferences, it works during the session but resets back to Light Mode every time I refresh the browser.

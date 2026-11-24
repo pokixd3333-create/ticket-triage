@@ -1,0 +1,1 @@
+Whenever we try to export our analytics report to CSV for any date range longer than 7 days, the page freezes and throws a gateway timeout error. We need this for our weekly board meeting.

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Triage Assistant</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <h1>Ticket Triage Assistant</h1>
+        <p class="subtitle">Paste a raw customer support message to classify, prioritize, and draft a response.</p>
+      </div>
+      <a href="/docs" target="_blank" rel="noopener noreferrer" class="docs-link">API Docs ↗</a>
+    </header>
+
+    <main class="main-grid">
+      <section class="workspace">
+        <form id="triage-form" class="card input-card" novalidate>
+          <label for="message-input" class="field-label">Customer Support Message</label>
+          <textarea
+            id="message-input"
+            rows="7"
+            placeholder="e.g., Hi, I was charged twice for my November invoice and need help resolving this..."
+          ></textarea>
+
+          <div class="input-footer">
+            <span id="char-counter" class="char-counter">0 / 10,000 characters</span>
+            <button type="submit" id="triage-btn" class="btn-primary" disabled>
+              Triage
+            </button>
+          </div>
+        </form>
+
+        <!-- Loading State (FR-14) -->
+        <div id="loading-state" class="card status-card hidden" role="status" aria-live="polite">
+          <div class="spinner"></div>
+          <span>Analyzing ticket and generating structured triage record...</span>
+        </div>
+
+        <!-- Error State (FR-16) -->
+        <div id="error-state" class="card error-card hidden" role="alert">
+          <strong>Unable to process ticket:</strong>
+          <span id="error-message"></span>
+        </div>
+
+        <!-- Result Card (FR-14, FR-15) -->
+        <article id="result-card" class="card result-card hidden" aria-live="polite">
+          <div class="result-header">
+            <div class="badges">
+              <span id="res-category" class="badge badge-category"></span>
+              <span id="res-priority" class="badge badge-priority"></span>
+              <span id="res-review" class="badge badge-review hidden">Needs human review</span>
+            </div>
+            <div class="meta-info">
+              <span id="res-confidence"></span>
+              <span class="separator">•</span>
+              <span id="res-version"></span>
+            </div>
+          </div>
+
+          <div id="res-warning" class="warning-banner hidden"></div>
+
+          <div class="result-section">
+            <h2>Summary</h2>
+            <p id="res-summary" class="summary-text"></p>
+          </div>
+
+          <div class="result-section">
+            <div class="reply-header">
+              <h2>Suggested Reply</h2>
+              <button type="button" id="copy-btn" class="btn-secondary">Copy reply</button>
+            </div>
+            <div id="res-reply" class="reply-box"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Session History Sidebar (FR-17) -->
+      <aside class="card history-panel">
+        <div class="history-header">
+          <h2>Session History</h2>
+          <span id="history-count" class="history-count">0 / 10</span>
+        </div>
+        <p id="history-empty" class="history-empty">No tickets triaged in this session yet.</p>
+        <ul id="history-list" class="history-list"></ul>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Our team relies heavily on Slack?would you consider building a native Slack integration so we can receive daily summary notifications directly in a channel?

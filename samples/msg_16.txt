@@ -1,0 +1,1 @@
+Suggestion: adding keyboard shortcuts like J and K to move quickly between tickets in the queue would be a great quality-of-life improvement.
